@@ -3,8 +3,13 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        title: ["Jua", "sans-serif"],
+      },
       colors: {
-        brand: "#F96162",
+        brand: "#000000",
+        navBG: "#000000",
+        navText: "#000000",
       },
     },
   },
