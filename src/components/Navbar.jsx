@@ -6,9 +6,12 @@ import { login, logout, onUserStateChange } from "../api/firebase";
 import User from "./User";
 
 export default function Navbar() {
-  const [user, setuser] = useState();
+  const [user, setUser] = useState();
   useEffect(() => {
-    onUserStateChange(setuser);
+    onUserStateChange((user) => {
+      console.log(user);
+      setUser(user);
+    });
   }, []);
 
   return (
@@ -24,12 +27,16 @@ export default function Navbar() {
         <Link to="/products" className="text-navText text-xl">
           상품
         </Link>
-        <Link to="/carts" className="text-navText text-2xl">
-          <BsFillCartFill />
-        </Link>
-        <Link to="/products/new" className="text-navText text-2xl">
-          <BsFillPencilFill />
-        </Link>
+        {user && !user.isAdmin && (
+          <Link to="/carts" className="text-navText text-2xl">
+            <BsFillCartFill />
+          </Link>
+        )}
+        {user && user.isAdmin && (
+          <Link to="/products/new" className="text-navText text-2xl">
+            <BsFillPencilFill />
+          </Link>
+        )}
         {user && <User user={user} />}
         {!user && (
           <button onClick={login} className="text-xl">
