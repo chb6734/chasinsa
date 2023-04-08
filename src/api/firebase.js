@@ -22,21 +22,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
+
+//로그인 팝업에서 자동로그인 되지 않도록 막음
 provider.setCustomParameters({
   prompt: "select_account",
 });
-//세션 종료시 로그 아웃되도록 연구 중
-// setPersistence(auth, sessionStorage)
-//   .then(() => {
-//     const provider = new GoogleAuthProvider();
-//     // In memory persistence will be applied to the signed in Google user
-//     // even though the persistence was set to 'none' and a page redirect
-//     // occurred.
-//     return signInWithRedirect(auth, provider);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
 
 export function login() {
   signInWithPopup(auth, provider).catch((error) => {
