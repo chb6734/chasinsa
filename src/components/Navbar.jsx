@@ -23,7 +23,7 @@ export default function Navbar() {
         <Link to="/products" className="text-navText text-xl">
           상품
         </Link>
-        {user && !user.isAdmin && (
+        {user && (
           <Link to="/carts" className="text-navText text-2xl">
             <BsFillCartFill />
           </Link>
