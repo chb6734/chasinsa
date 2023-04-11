@@ -4,6 +4,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { BsFillPencilFill, BsFillCartFill } from "react-icons/bs";
 import { login, logout, onUserStateChange } from "../api/firebase";
 import User from "./User";
+import Button from "./ui/Button";
 
 export default function Navbar() {
   const [user, setUser] = useState();
@@ -39,14 +40,14 @@ export default function Navbar() {
         )}
         {user && <User user={user} />}
         {!user && (
-          <button onClick={login} className="text-xl">
+          <Button text={"Login"} onClick={login}>
             Login
-          </button>
+          </Button>
         )}
         {user && (
-          <button onClick={logout} className="text-xl">
+          <Button text={"Logout"} onClick={logout}>
             Logout
-          </button>
+          </Button>
         )}
       </nav>
     </header>
