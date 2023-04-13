@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../components/ui/Button";
 import { uploadImage } from "../api/uploader";
+import { addNewProduct } from "../api/firebase";
 
 export default function Newproduct() {
   const [product, setProduct] = useState({});
@@ -17,6 +18,7 @@ export default function Newproduct() {
     e.preventDefault();
     uploadImage(file).then((url) => {
       console.log(url);
+      addNewProduct(product, url);
     });
   };
   return (
@@ -64,8 +66,8 @@ export default function Newproduct() {
         />
         <input
           type="text"
-          name="option"
-          value={product.option ?? ""}
+          name="options"
+          value={product.options ?? ""}
           placeholder="옵션"
           required
           onChange={handleChange}
