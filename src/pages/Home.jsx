@@ -1,5 +1,12 @@
 import React from "react";
+import Products from "../components/Products";
+import Banner from "../components/Banner";
 
 export default function Home() {
-  return <div>홈화면이다아</div>;
+  return (
+    <section>
+      <Banner />
+      <Products />
+    </section>
+  );
 }
