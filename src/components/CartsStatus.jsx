@@ -8,9 +8,13 @@ export default function CartsStatus() {
   const { uid } = useAuthContext();
   const { data: products } = useQuery(["carts"], () => getCart(uid));
   return (
-    <div>
-      <BsFillCartFill />
-      {products && <p>{products.length}</p>}
+    <div className="relative">
+      <BsFillCartFill className="text-4xl" />
+      {products && (
+        <p className="w-6 h-6 text-center text-lg bg-red-400 text-white font-bold rounded-full absolute -top-1 -right-2">
+          {products.length}
+        </p>
+      )}
     </div>
   );
 }
