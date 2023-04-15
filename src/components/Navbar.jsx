@@ -5,7 +5,7 @@ import { BsFillPencilFill, BsFillCartFill } from "react-icons/bs";
 import { login, logout, onUserStateChange } from "../api/firebase";
 import User from "./User";
 import Button from "./ui/Button";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
