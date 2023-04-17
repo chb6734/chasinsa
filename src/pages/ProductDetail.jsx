@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { useAuthContext } from "../context/AuthContext";
-import { addUpdateToCart } from "../api/firebase";
+import useCart from "../hooks/useCarts";
 
 export default function ProductDetail() {
   const { uid } = useAuthContext();
+  const { addUpdateItem } = useCart();
+  const [success, setSuccess] = useState();
   const handleSelect = (e) => setSelected(e.target.value);
   const handleClick = () => {
     const product = { id, image, title, price, option: selected, quantity: 1 };
@@ -13,7 +15,12 @@ export default function ProductDetail() {
       window.alert("로그인 한 뒤 사용해주세요");
       return;
     }
-    addUpdateToCart(uid, product);
+    addUpdateItem.mutate(product, {
+      onSuccess: () => {
+        setSuccess("장바구니에 추가되었습니다");
+        setTimeout(() => setSuccess(null), 3000);
+      },
+    });
   };
   const {
     state: {
@@ -52,6 +59,7 @@ export default function ProductDetail() {
                 ))}
             </select>
           </div>
+          {success && <p>{success}</p>}
           <Button text="장바구니에 추가" onClick={handleClick} />
         </div>
       </section>

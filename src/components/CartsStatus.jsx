@@ -3,10 +3,13 @@ import React from "react";
 import { BsFillCartFill } from "react-icons/bs";
 import { useAuthContext } from "../context/AuthContext";
 import { getCart } from "../api/firebase";
+import useCart from "../hooks/useCarts";
 
 export default function CartsStatus() {
   const { uid } = useAuthContext();
-  const { data: products } = useQuery(["carts"], () => getCart(uid));
+  const {
+    cartQuery: { data: products },
+  } = useCart();
   return (
     <div className="relative">
       <BsFillCartFill className="text-4xl" />
