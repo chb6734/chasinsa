@@ -10,14 +10,14 @@ export default function CartItem({
   product: { id, image, title, option, quantity, price },
   uid,
 }) {
-  const { addUpdateToCart, removeFromCart } = useCart();
+  const { addUpdateItem, removeItem } = useCart();
   const handleMinus = () => {
     if (quantity < 2) return;
-    addUpdateToCart.mutate({ ...product, quantity: quantity - 1 });
+    addUpdateItem.mutate({ ...product, quantity: quantity - 1 });
   };
   const handlePlus = () =>
-    addUpdateToCart.mutate({ ...product, quantity: quantity + 1 });
-  const handleDelete = () => removeFromCart.mutate(uid, id);
+    addUpdateItem.mutate({ ...product, quantity: quantity + 1 });
+  const handleDelete = () => removeItem.mutate(uid, id);
   return (
     <li className="flex justify-between my-2 items-center">
       <img className="w-24 md:w-48 rounded-lg ml-4" src={image} alt={title} />

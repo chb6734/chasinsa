@@ -13,15 +13,15 @@ export default function MyCart() {
   const {
     cartQuery: { isLoading, data: products },
   } = useCart();
+
+  if (isLoading) return <p> Loading...</p>;
+  const hasProducts = products && products.length > 0;
   const totalPrice =
     products &&
     products.reduce(
       (prev, current) => prev + parseInt(current.price) * current.quantity,
       0
     );
-  if (isLoading) return <p> Loading...</p>;
-  const hasProducts = products && products.length > 0;
-  console.log(hasProducts);
   return (
     <section className="p-8 flex flex-col">
       <p className="text-2xl text-center font-bold pb-4 border-b border-gray-300">
