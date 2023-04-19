@@ -17,7 +17,9 @@ export default function CartItem({
   };
   const handlePlus = () =>
     addUpdateItem.mutate({ ...product, quantity: quantity + 1 });
-  const handleDelete = () => removeItem.mutate(uid, id);
+  const handleDelete = () => {
+    removeItem.mutate(id);
+  };
   return (
     <li className="flex justify-between my-2 items-center">
       <img className="w-24 md:w-48 rounded-lg ml-4" src={image} alt={title} />
